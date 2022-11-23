@@ -53,7 +53,7 @@ var displayForecast = function() {
         fiveDay.appendChild(fiveDayCards);
 };
 
-displaySearchHistory(data) {
+displaySearchHistory(data); {
     var searchHistory = document.createElement("button");
     searchHistory.setAttribute("class", "btn btn-secondary");
     searchHistory.textContent = data.city.name;
