@@ -1,5 +1,4 @@
 * {
-box-sizing: border-box;
 font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
 }
 
@@ -8,11 +7,28 @@ font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
     border: 1px solid black;
 }
 
-#five-day-container{
+#today-weather {
 
-    background-color: darkslategray;
+    border: 1px;px solid black;
+    border-radius: 2px;
+    background-color: antiquewhite;
+}
+
+.five-day-container {
+    display:flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    
+}
+
+.card {
+    
+
+}
+
+.card-body {
+    background-color: rgb(55, 70, 70);
     color:white; 
     font: size 12px;
-
 }
 

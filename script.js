@@ -6,13 +6,11 @@ var searchButton = document.querySelector(".search-button");
 var historyBox = document.querySelector("#search-history");
 var mainPane = document.querySelector("#today-weather");
 var fiveDay = document.querySelector("#five-day-container");
-
+var  userSearch = userInput.value.trim();
 
 var searchSubmission = function (event) {
-    // event.preventdefault();
+    event.preventdefault();
 
-var  userSearch = userInput.value.trim();
-    
     if(userSearch) {
     getTheWeather(userSearch);
     
@@ -24,7 +22,7 @@ var  userSearch = userInput.value.trim();
  
 
 
-var getTheWeather = function () {
+var getTheWeather = function (userSearch) {
     var weatherURL = "http://api.openweathermap.org/data/2.5/weather?lat=" +lat+ "&lon=" +lon+ "&appid=" + APIKey
 
      fetch(weatherURL)

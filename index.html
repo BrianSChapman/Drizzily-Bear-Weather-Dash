@@ -17,29 +17,91 @@
     </header>
 
     <!-- Search bar -->
-    <main class="container-fluid">
-        <div class="row">
-            <div class="col-3">
+<main class="container-fluid">
+    
+        <section class="row">
+            <div class="col-12 col-md-3">
 
             <h2> Seach for a City:</h2>
              <div class="form-floating mb-3">
                 <input type="text" class="form-control user-input" id="floatingInput" for="City">
                 <label for="floatingInput"></label>
                 <div class="d-grid gap-2">
-                <button class="btn btn-secondary mt-2 search-button" type="button">Search</button>
-                <span class="border-bottom mb-2"></span>
+                <button class="btn btn-primary mt-2 search-button" type="button">Search</button>
+                <hr />
             </div>
             <!-- Empty space to build our search history links -->
             <div id="search-history"></div>
-            <div class="col-9">
-            <!-- Empty space for the main weather pane -->
-            <div id="today-weather"></div>
-            <h3>5-Day Forecast:</h3>
-            <div id="five-day-container"></div>
+             <div class="col d-grid gap-2">
+                <button class="btn btn-secondary" type="button"></button>
+                <button class="btn btn-secondary" type="button"></button>
+                <button class="btn btn-secondary" type="button"></button>
+		        <button class="btn btn-secondary" type="button"></button>
+                <button class="btn btn-secondary" type="button"></button>
+        
+        </section>
+        <!-- Area to dynamically create daily weather info pane -->
+        <div id="today-weather" class= "col-md-9 mr-5 ml-5 p-2 text-center justify-center">
+            <h2></h2>
+            <p></p>
+            <p></p>
+            <p></p>
+            <p></p>
         </div>
-    </div>
+
+        <!-- 5 day forecast -->
+        <section class="justify-content-around five-day-container">
+               
+                <div class="col-12 col-md-9">  
+                    <h3>5-Day Forecast:</h3>
+        
+                  <div class="daily-1">
+                      <h5 class="day"></h5>
+                      <img class="icon"></img>
+                      <p class="temp"></p>
+                      <p class ="humidity"></p>
+                </div>
+                
+                    <div class="daily-2">
+                        <h5 class="day"></h5>
+                        <img class="icon"></img>
+                        <p class="temp"></p>
+                        <p class ="humidity"></p>
+                </div>
+              
+                <div class="daily-3">
+                     <h5 class="day"></h5>
+                    <img class="icon"></img>
+                    <p class="temp"></p>
+                    <p class ="humidity"></p>
+                
+                </div>
+   
+                <div class="daily-4">
+                    <h5 class="day"></h5>
+                    <img class="icon"></img>
+                    <p class="temp"></p>
+                    <p class ="humidity"></p>
+                
+                </div>
+     
+                <div class="daily-5">
+                    <h5 class="day"></h5>
+                    <img class="icon"></img>
+                    <p class="temp"></p>
+                    <p class ="humidity"></p>
+                </div>
+        </div>  
+
+    </section>
+
+</main>
+   
+
+
+    
            
-    </main>
+   
        
         <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
         <script src="./script.js"> </script>    
