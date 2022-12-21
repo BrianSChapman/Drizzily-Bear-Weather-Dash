@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drizzily Bear Weather Dash</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
     <link rel="stylesheet" href="./styles.css"/> 
 </head>
 
@@ -23,9 +24,10 @@
             <div class="col-12 col-md-3">
 
             <h2> Search for a City:</h2>
-             <div class="form-floating mb-3">
-                <input type="text" class="form-control user-input" id="floatingInput" for="City">
-                <label for="floatingInput"></label>
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label"></label>
+                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Long Beach">
+              </div>
                 <div class="d-grid gap-2">
                 <button class="btn btn-primary mt-2 search-button" type="button">Search</button>
                 <hr />
@@ -38,14 +40,16 @@
         </section>
         <!-- Area to dynamically create daily weather info pane -->
         <div id="today-weather" class= "col-md-9 mr-5 ml-5 p-2 text-center justify-center">
-           
+           <p class="current-temp" id="current-temp"></p>
+           <p class="current-humidity" id="current-current-humidity"></p>
+           <p class="current-wind" id="current-wind"></p>
         </div>
 
         <!-- 5 day forecast -->
         <section class="justify-content-around five-day-container">
                
                 <div class="col-12 col-md-9">  
-                    <h3>5-Day Forecast:</h3>
+        
 
         <!-- Laying out areas to dynamically create weather cards -->
                   <div class="daily-1">
