@@ -98,9 +98,9 @@ function displayForecast(forecast) {
   const forecastEl = document.querySelector(".five-day-container");
   const fiveDayCards = document.querySelector(".five-day");
  
-    forecastEl.setAttribute("display", "block");
-    fiveDayCards.setAttribute("display", "inline")
-  // START HERE!!! WE NEED TO SET ATTRIBUTE FOR THESE CARDS
+    forecastEl.classList.toggle("five-day-container-show");
+    fiveDayCards.classList.toggle("five-day-show");
+  // START HERE!!! WE NEED TO SET ATTRIBUTE FOR THESE CARDS!
   
   for (let i = 0; i < 5; i++) {
     console.log(forecast.list[i].main);
