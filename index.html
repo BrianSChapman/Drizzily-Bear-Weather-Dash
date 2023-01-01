@@ -29,7 +29,7 @@
                 <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Long Beach">
               </div>
                 <div class="d-grid gap-2">
-                <button class="btn btn-primary mt-2 search-button" type="button">Search</button>
+                <form input="button" class="btn btn-primary mt-2 search-button">Search</form>
                 <hr />
             </div>
             <!-- Empty space to build our search history links -->
@@ -46,50 +46,72 @@
         </div>
 
         <!-- 5 day forecast -->
-        <section class="justify-content-around five-day-container">
+        <section class="justify-content-around row" id="five-day-container">
                
                 <div class="col-12 col-md-9">  
         
 
         <!-- Laying out areas to dynamically create weather cards -->
-                  <div class="daily-1">
-                      <h5 class="day"></h5>
-                      <img class="icon"></img>
-                      <p class="temp"></p>
-                      <p class ="humidity"></p>
-                </div>
-                
-                    <div class="daily-2">
-                        <h5 class="day"></h5>
-                        <img class="icon"></img>
-                        <p class="temp"></p>
-                        <p class ="humidity"></p>
-                </div>
-              
-                <div class="daily-3">
-                     <h5 class="day"></h5>
-                    <img class="icon"></img>
-                    <p class="temp"></p>
-                    <p class ="humidity"></p>
-                
-                </div>
-   
-                <div class="daily-4">
-                    <h5 class="day"></h5>
-                    <img class="icon"></img>
-                    <p class="temp"></p>
-                    <p class ="humidity"></p>
-                
-                </div>
-     
-                <div class="daily-5">
-                    <h5 class="day"></h5>
-                    <img class="icon"></img>
-                    <p class="temp"></p>
-                    <p class ="humidity"></p>
-                </div>
-        </div>  
-
+        <div class="card" style="width: 18rem;">
+            <div class="card-header border-dark day">
+    
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item icon"></li>
+              <li class="list-group-item temp"></li>
+              <li class="list-group-item wind"></li>
+              <li class="list-group-item humidity"></li>
+            </ul>
+          </div>  
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-header border-dark day">
+    
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item icon"></li>
+              <li class="list-group-item temp"></li>
+              <li class="list-group-item wind"></li>
+              <li class="list-group-item humidity"></li>
+            </ul>
+          </div> 
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-header border-dark day">
+    
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item icon"></li>
+              <li class="list-group-item temp"></li>
+              <li class="list-group-item wind"></li>
+              <li class="list-group-item humidity"></li>
+            </ul>
+          </div>  
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-header border-dark day">
+    
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item icon"></li>
+              <li class="list-group-item temp"></li>
+              <li class="list-group-item wind"></li>
+              <li class="list-group-item humidity"></li>
+            </ul>
+          </div>  
+          
+          <div class="card" style="width: 18rem;">
+            <div class="card-header border-dark day">
+    
+            </div>
+            <ul class="list-group list-group-flush">
+              <li class="list-group-item icon"></li>
+              <li class="list-group-item temp"></li>
+              <li class="list-group-item wind"></li>
+              <li class="list-group-item humidity"></li>
+            </ul>
+          </div>       
+        
     </section>
 
 </main>

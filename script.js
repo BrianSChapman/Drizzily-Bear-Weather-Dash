@@ -34,7 +34,7 @@ var searchSubmission = function (event) {
   }
 };
 // Creating a new instance of search history if there isn't one.
-// var searchArray = JSON.parse(localStorage.getItem("search history"));
+// var searchArray = JSON.parse(localStorage.getItem(searchHistory));
 // if (!searchArray) {
 //   searchArray = {
 //     previousCity: [],
@@ -46,10 +46,10 @@ var searchSubmission = function (event) {
 // }
 // searchArray.previousCity.push(city);
 
-// Save search history to localStorage.
-function storeSearchHistory() {
-  localStorage.setItem("search history", JSON.stringify(searchArray));
-}
+// // Save search history to localStorage.
+// function storeSearchHistory() {
+//   localStorage.setItem(searchHistory, JSON.stringify(searchArray));
+// }
 
 // var getTheWeather = function (userSearch) {
 
@@ -85,28 +85,39 @@ var displayDaily = function (data) {
   var cityNameEl = $("<h2>").addClass("card-title").text(data.name);
   var tempEl = $("<p>").addClass("card-text").text(data.main.temp);
 
-  // var todaysWeather = document.createElement("div");
-  // todaysWeather.setAttribute("id", "search-result");
-  // var fiveDayCards = document.createElement("div");
-  // fiveDayCards.setAttribute("id", "five-day-container");
+  var todaysWeather = document.createElement("div");
+  todaysWeather.setAttribute("id", "search-result");
+  var fiveDayCards = document.createElement("div");
+  fiveDayCards.setAttribute("id", "five-day-container");
   $("#today-weather").append(cityNameEl, tempEl);
 
   // fiveDay.appendChild(fiveDayCards);
 };
-  function displayForecast(forecast){
-    console.log(forecast, "forecast")
-    const forecastEl = document.querySelector(".five-day-container")
-    forecastEl.innerHTML = "";
-    for (let i = 0; i < 5; i++) {
-      console.log(forecast.list[i].main.temp)
-      const tempEl = document.createElement("div")
-      tempEl.textContent = forecast.list[i].main.temp
-      forecastEl.appendChild(tempEl)
-    }
-  }
-      
-    
+function displayForecast(forecast) {
+  const forecastEl = document.querySelector(".five-day-container");
+  forecastEl.innerHTML = "";
+  for (let i = 0; i < 5; i++) {
+    console.log(forecast.list[i].main);
   
+    const tempEl = document.createElement("div");
+    tempEl.textContent = forecast.list[i].main.temp;
+    tempEl.setAttribute("class", ".temp");
+    forecastEl.appendChild(tempEl);
+    
+
+    const windEl = document.createElement("div");
+    windEl.textContent = forecast.list[i].wind.speed;
+    windEl.setAttribute("class", ".wind");
+    forecastEl.appendChild(windEl);
+    
+
+    const humEl = document.createElement("div");
+    humEl.textContent = forecast.list[i].main.humidity;
+    humEl.setAttribute("class", ".humidity")
+    forecastEl.appendChild(humEl);
+  }
+}
+
 // function displaySearchHistory(data) {
 //     var searchHistory = document.createElement("button");
 //     searchHistory.setAttribute("class", "btn btn-secondary");
