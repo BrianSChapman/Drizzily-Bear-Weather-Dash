@@ -87,33 +87,44 @@ var displayDaily = function (data) {
 
   var todaysWeather = document.createElement("div");
   todaysWeather.setAttribute("id", "search-result");
-  var fiveDayCards = document.createElement("div");
-  fiveDayCards.setAttribute("id", "five-day-container");
+  // var fiveDayCards = document.createElement("div");
+  // fiveDayCards.setAttribute("id", "five-day-container");
+  $("#today-weather") = "";
   $("#today-weather").append(cityNameEl, tempEl);
 
   // fiveDay.appendChild(fiveDayCards);
 };
 function displayForecast(forecast) {
   const forecastEl = document.querySelector(".five-day-container");
-  forecastEl.innerHTML = "";
+  const fiveDayCards = document.querySelector(".five-day");
+ 
+    forecastEl.setAttribute("display", "block");
+    fiveDayCards.setAttribute("display", "inline")
+  // START HERE!!! WE NEED TO SET ATTRIBUTE FOR THESE CARDS
+  
   for (let i = 0; i < 5; i++) {
     console.log(forecast.list[i].main);
+
+    const iconEl = document.createElement("li");
+    iconEl.innerHTML = forecast.list[i].weather.icon;
+    iconEl.setAttribute("class", ".list-group-item icon")
+    forecastEl.appendChild(iconEl); 
   
-    const tempEl = document.createElement("div");
+    const tempEl = document.createElement("li");
     tempEl.textContent = forecast.list[i].main.temp;
-    tempEl.setAttribute("class", ".temp");
+    tempEl.setAttribute("class", ".list-group-item temp");
     forecastEl.appendChild(tempEl);
     
 
-    const windEl = document.createElement("div");
+    const windEl = document.createElement("li");
     windEl.textContent = forecast.list[i].wind.speed;
-    windEl.setAttribute("class", ".wind");
+    windEl.setAttribute("class", ".list-group-item wind");
     forecastEl.appendChild(windEl);
     
 
-    const humEl = document.createElement("div");
+    const humEl = document.createElement("li");
     humEl.textContent = forecast.list[i].main.humidity;
-    humEl.setAttribute("class", ".humidity")
+    humEl.setAttribute("class", ". list-group-item humidity")
     forecastEl.appendChild(humEl);
   }
 }
