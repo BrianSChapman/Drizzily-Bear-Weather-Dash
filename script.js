@@ -27,8 +27,7 @@ var searchSubmission = function (event) {
         if (data.cod == 404) {
           alert("City not found!");
           return;
-        }
-        console.log(data);
+        };
         displayDaily(data);
       });
   }
@@ -75,7 +74,6 @@ var displayDaily = function (data) {
 
   fetch(weatherURL).then(function (response) {
     if (response.ok) {
-      console.log(response);
       response.json().then(function (data) {
         console.log(data, "second fetch");
         displayForecast(data);
@@ -87,20 +85,26 @@ var displayDaily = function (data) {
 
   var todaysWeather = document.createElement("div");
   todaysWeather.setAttribute("id", "search-result");
-  // var fiveDayCards = document.createElement("div");
-  // fiveDayCards.setAttribute("id", "five-day-container");
   $("#today-weather") = "";
   $("#today-weather").append(cityNameEl, tempEl);
-
-  // fiveDay.appendChild(fiveDayCards);
 };
+
 function displayForecast(forecast) {
   const forecastEl = document.querySelector(".five-day-container");
   const fiveDayCards = document.querySelector(".five-day");
  
-    forecastEl.classList.toggle("five-day-container-show");
-    fiveDayCards.classList.toggle("five-day-show");
-  // START HERE!!! WE NEED TO SET ATTRIBUTE FOR THESE CARDS!
+  showFiveDay(() => {
+    if(forecastEl.style.display === "none") {
+      forecastEl.style.display = "block"
+    } else {
+      forecastEl.style.display = "none";
+    }
+    if(fiveDayCards.style.display === "none"){
+      fiveDayCards.style.display = "inline-block"
+    } else {
+      fiveDayCards.style.display = "none"
+    };
+  })  
   
   for (let i = 0; i < 5; i++) {
     console.log(forecast.list[i].main);
