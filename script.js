@@ -2,7 +2,7 @@ var APIKey = "59ae0903b9c09ab9e0fdda3cbdca2806";
 var searchButton = document.querySelector(".search-button");
 var historyBox = document.querySelector("#search-history");
 var mainPane = document.querySelector("#today-weather");
-var fiveDay = document.querySelector("#five-day-container");
+// const fiveDayCards = document.querySelector(".five-day");
 
 var searchSubmission = function (event) {
   event.preventDefault();
@@ -27,7 +27,7 @@ var searchSubmission = function (event) {
         if (data.cod == 404) {
           alert("City not found!");
           return;
-        };
+        }
         displayDaily(data);
       });
   }
@@ -74,7 +74,7 @@ var displayDaily = function (data) {
 
   fetch(weatherURL).then(function (response) {
     if (response.ok) {
-      response.json().then(function (data) {
+      response.json(response).then(function (data) {
         console.log(data, "second fetch");
         displayForecast(data);
       });
@@ -85,52 +85,53 @@ var displayDaily = function (data) {
 
   var todaysWeather = document.createElement("div");
   todaysWeather.setAttribute("id", "search-result");
-  $("#today-weather") = "";
   $("#today-weather").append(cityNameEl, tempEl);
 };
+// display hidden five day forecast elements
+const forecastEl = document.querySelector("#five-day-container");
+function showFiveDay() {
+
+  forecastEl.classList.remove('hidden')
+
+  // if (forecastEl.style.display === "none") {
+  //   forecastEl.style.display = "block";
+  // } else {
+  //   forecastEl.style.display = "none";
+  // }
+  // if (fiveDayCards.style.display === "none") {
+  //   fiveDayCards.style.display = "inline-block";
+  // } else {
+  //   fiveDayCards.style.display = "none";
+  // }
+}
 
 function displayForecast(forecast) {
-  const forecastEl = document.querySelector(".five-day-container");
-  const fiveDayCards = document.querySelector(".five-day");
- 
-  showFiveDay(() => {
-    if(forecastEl.style.display === "none") {
-      forecastEl.style.display = "block"
-    } else {
-      forecastEl.style.display = "none";
-    }
-    if(fiveDayCards.style.display === "none"){
-      fiveDayCards.style.display = "inline-block"
-    } else {
-      fiveDayCards.style.display = "none"
-    };
-  })  
-  
   for (let i = 0; i < 5; i++) {
+    let fiveDayCards = document.createElement('ul')
+    forecastEl.append(fiveDayCards)
     console.log(forecast.list[i].main);
 
     const iconEl = document.createElement("li");
     iconEl.innerHTML = forecast.list[i].weather.icon;
-    iconEl.setAttribute("class", ".list-group-item icon")
-    forecastEl.appendChild(iconEl); 
-  
+    iconEl.setAttribute("class", ".list-group-item icon");
+    fiveDayCards.appendChild(iconEl);
+
     const tempEl = document.createElement("li");
     tempEl.textContent = forecast.list[i].main.temp;
     tempEl.setAttribute("class", ".list-group-item temp");
-    forecastEl.appendChild(tempEl);
-    
+    fiveDayCards.appendChild(tempEl);
 
     const windEl = document.createElement("li");
     windEl.textContent = forecast.list[i].wind.speed;
     windEl.setAttribute("class", ".list-group-item wind");
-    forecastEl.appendChild(windEl);
-    
+    fiveDayCards.appendChild(windEl);
 
     const humEl = document.createElement("li");
     humEl.textContent = forecast.list[i].main.humidity;
-    humEl.setAttribute("class", ". list-group-item humidity")
-    forecastEl.appendChild(humEl);
+    humEl.setAttribute("class", ". list-group-item humidity");
+    fiveDayCards.appendChild(humEl);
   }
+  showFiveDay();
 }
 
 // function displaySearchHistory(data) {

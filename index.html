@@ -1,125 +1,128 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drizzily Bear Weather Dash</title>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.2/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/weather-icons/2.0.10/css/weather-icons.min.css">
-    <link rel="stylesheet" href="./styles.css"/> 
+    <link rel="stylesheet" href="./styles.css" />
 </head>
 
 <body>
 
     <header class="p-3 mb-2 bg-primary text-white">
-            <h1 class="text-center">Weather Dashboard</h1>
+        <h1 class="text-center">Weather Dashboard</h1>
         </div>
     </header>
 
     <!-- Search bar -->
-<main class="container-fluid">
-    
+    <main class="container-fluid">
+
         <section class="row">
             <div class="col-12 col-md-3">
 
-            <h2> Search for a City:</h2>
-            <div class="mb-3">
-                <label for="exampleFormControlInput1" class="form-label"></label>
-                <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Long Beach">
-              </div>
+                <h2> Search for a City:</h2>
+                <div class="mb-3">
+                    <label for="exampleFormControlInput1" class="form-label"></label>
+                    <input type="text" class="form-control" id="exampleFormControlInput1" placeholder="Long Beach">
+                </div>
                 <div class="d-grid gap-2">
-                <form input="button" class="btn btn-primary mt-2 search-button">Search</form>
-                <hr />
-            </div>
-            <!-- Empty space to build our search history links -->
-            <div id="search-history"></div>
-             <div class="col d-grid gap-2">
-               
-        
+                    <form input="button" class="btn btn-primary mt-2 search-button">Search</form>
+                    <hr />
+                </div>
+                <!-- Empty space to build our search history links -->
+                <div id="search-history"></div>
+                <div class="col d-grid gap-2">
+
+
         </section>
         <!-- Area to dynamically create daily weather info pane -->
-        <div id="today-weather" class= "col-md-9 mr-5 ml-5 p-2 text-center justify-center">
-           <p class="current-temp" id="current-temp"></p>
-           <p class="current-humidity" id="current-current-humidity"></p>
-           <p class="current-wind" id="current-wind"></p>
+        <div id="today-weather" class="col-md-9 mr-5 ml-5 p-2 text-center justify-center">
+            <p class="current-temp" id="current-temp"></p>
+            <p class="current-humidity" id="current-current-humidity"></p>
+            <p class="current-wind" id="current-wind"></p>
         </div>
 
         <!-- 5 day forecast -->
-        <section class="justify-content-around row" id="five-day-container">
-               
-                <div class="col-12 col-md-9">  
-        
+        <section class="justify-content-around row hidden" id="five-day-container">
+            
 
-        <!-- Laying out areas to dynamically create weather cards -->
-        <div class="card" style="width: 18rem;">
-            <div class="card-header border-dark day">
-    
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item icon"></li>
-              <li class="list-group-item temp"></li>
-              <li class="list-group-item wind"></li>
-              <li class="list-group-item humidity"></li>
-            </ul>
-          </div>  
-          
-          <div class="card five-day" style="width: 18rem;">
-            <div class="card-header border-dark day">
-    
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item icon"></li>
-              <li class="list-group-item temp"></li>
-              <li class="list-group-item wind"></li>
-              <li class="list-group-item humidity"></li>
-            </ul>
-          </div> 
-          
-          <div class="card five-day" style="width: 18rem;">
-            <div class="card-header border-dark day">
-    
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item icon"></li>
-              <li class="list-group-item temp"></li>
-              <li class="list-group-item wind"></li>
-              <li class="list-group-item humidity"></li>
-            </ul>
-          </div>  
-          
-          <div class="card five-day" style="width: 18rem;">
-            <div class="card-header border-dark day">
-    
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item icon"></li>
-              <li class="list-group-item temp"></li>
-              <li class="list-group-item wind"></li>
-              <li class="list-group-item humidity"></li>
-            </ul>
-          </div>  
-          
-          <div class="card five-day" style="width: 18rem;">
-            <div class="card-header border-dark day">
-    
-            </div>
-            <ul class="list-group list-group-flush">
-              <li class="list-group-item icon"></li>
-              <li class="list-group-item temp"></li>
-              <li class="list-group-item wind"></li>
-              <li class="list-group-item humidity"></li>
-            </ul>
-          </div>       
-        
-    </section>
+            <!-- <div class="col-12 col-md-9">
 
-</main>
-   
-         <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.6/dayjs.min.js"></script>
-        <script src="https://code.jquery.com/jquery-3.6.1.slim.js" integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
-        <script src="./script.js"> </script>    
-    
-    </body>
+
+                <!-- Laying out areas to dynamically create weather cards -->
+                <div class="card" style="width: 18rem;">
+                    <div class="card-header border-dark day">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item icon"></li>
+                        <li class="list-group-item temp"></li>
+                        <li class="list-group-item wind"></li>
+                        <li class="list-group-item humidity"></li>
+                    </ul>
+                </div>
+
+                <div class="card five-day" style="width: 18rem;">
+                    <div class="card-header border-dark day">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item icon"></li>
+                        <li class="list-group-item temp"></li>
+                        <li class="list-group-item wind"></li>
+                        <li class="list-group-item humidity"></li>
+                    </ul>
+                </div>
+
+                <div class="card five-day" style="width: 18rem;">
+                    <div class="card-header border-dark day">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item icon"></li>
+                        <li class="list-group-item temp"></li>
+                        <li class="list-group-item wind"></li>
+                        <li class="list-group-item humidity"></li>
+                    </ul>
+                </div>
+
+                <div class="card five-day" style="width: 18rem;">
+                    <div class="card-header border-dark day">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item icon"></li>
+                        <li class="list-group-item temp"></li>
+                        <li class="list-group-item wind"></li>
+                        <li class="list-group-item humidity"></li>
+                    </ul>
+                </div>
+
+                <div class="card five-day" style="width: 18rem;">
+                    <div class="card-header border-dark day">
+
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item icon"></li>
+                        <li class="list-group-item temp"></li>
+                        <li class="list-group-item wind"></li>
+                        <li class="list-group-item humidity"></li>
+                    </ul>
+                </div> -->
+
+        </section>
+
+    </main>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dayjs/1.11.6/dayjs.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.slim.js"
+        integrity="sha256-tXm+sa1uzsbFnbXt8GJqsgi2Tw+m4BLGDof6eUPjbtk=" crossorigin="anonymous"></script>
+    <script src="./script.js"> </script>
+
+</body>
 
 </html>
