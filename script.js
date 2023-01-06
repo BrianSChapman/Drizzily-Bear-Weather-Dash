@@ -15,20 +15,21 @@ var searchSubmission = function (event) {
     userInput +
     "&units=imperial&appid=" +
     APIKey;
-  if (!userInput) {
-    alert("Please enter a city!");
-    return;
-  } else {
-    fetch(queryURL)
+    if (!userInput) {
+      alert("Please enter a city!");
+      return;
+    } else {
+      fetch(queryURL)
       .then(function (response) {
         return response.json();
       })
       .then(function (data) {
+        console.log('current', data)
         if (data.cod == 404) {
           alert("City not found!");
           return;
         }
-        displayDaily(data);
+        displayDaily(data, userInput);
       });
   }
 };
@@ -63,7 +64,7 @@ var searchSubmission = function (event) {
 //     })
 //     }
 
-var displayDaily = function (data) {
+var displayDaily = function (data, city) {
   var weatherURL =
     "http://api.openweathermap.org/data/2.5/forecast?lat=" +
     data.coord.lat +
@@ -75,45 +76,43 @@ var displayDaily = function (data) {
   fetch(weatherURL).then(function (response) {
     if (response.ok) {
       response.json(response).then(function (data) {
-        console.log(data, "second fetch");
+        console.log("five day" , data)
         displayForecast(data);
+        saveToHistory(city);
       });
     }
   });
-  var cityNameEl = $("<h2>").addClass("card-title").text(data.name);
-  var tempEl = $("<p>").addClass("card-text").text(data.main.temp);
-
-  var todaysWeather = document.createElement("div");
-  todaysWeather.setAttribute("id", "search-result");
-  $("#today-weather").append(cityNameEl, tempEl);
+ $("#current-city-element").addClass("card-title").text(data.name);
+  $("#current-temp").addClass("card-text").text(data.main.temp);
+  // $("#current-temp").addClass("card-text").text(data.main.temp);
+  $(".current-humidity").addClass("card-text").text(data.main.humidity);
+  $("#current-wind").addClass("card-text").text(data.wind.speed);
+  /
 };
 // display hidden five day forecast elements
 const forecastEl = document.querySelector("#five-day-container");
 function showFiveDay() {
-
-  forecastEl.classList.remove('hidden')
-
-  // if (forecastEl.style.display === "none") {
-  //   forecastEl.style.display = "block";
-  // } else {
-  //   forecastEl.style.display = "none";
-  // }
-  // if (fiveDayCards.style.display === "none") {
-  //   fiveDayCards.style.display = "inline-block";
-  // } else {
-  //   fiveDayCards.style.display = "none";
-  // }
+  forecastEl.classList.remove("hidden");
 }
 
 function displayForecast(forecast) {
+  forecastEl.textContent = "";
   for (let i = 0; i < 5; i++) {
-    let fiveDayCards = document.createElement('ul')
-    forecastEl.append(fiveDayCards)
+    let fiveDayCards = document.createElement("ul");
+    forecastEl.append(fiveDayCards);
     console.log(forecast.list[i].main);
 
     const iconEl = document.createElement("li");
-    iconEl.innerHTML = forecast.list[i].weather.icon;
+    const iconImg = document.createElement("img");
+    console.log(forecast);
+    iconImg.setAttribute(
+      "src",
+      "http://openweathermap.org/img/wn/" +
+        forecast.list[i].weather[0].icon +
+        ".png"
+    );
     iconEl.setAttribute("class", ".list-group-item icon");
+    iconEl.append(iconImg);
     fiveDayCards.appendChild(iconEl);
 
     const tempEl = document.createElement("li");
@@ -134,13 +133,62 @@ function displayForecast(forecast) {
   showFiveDay();
 }
 
-// function displaySearchHistory(data) {
-//     var searchHistory = document.createElement("button");
-//     searchHistory.setAttribute("class", "btn btn-secondary");
-//     searchHistory.textContent = data.city.name;
-//     historyBox.append(searchHistory);
+function saveToHistory(city) {
+  let storage = JSON.parse(localStorage.getItem("weatherHistory"));
+  if (storage === null) {
+    storage = [];
+  }
 
-// }
+  storage.push(city);
+
+  localStorage.setItem("weatherHistory", JSON.stringify(storage));
+  displaySearchHistory();
+}
+
+function displaySearchHistory() {
+  let storage = JSON.parse(localStorage.getItem("weatherHistory"));
+  if (storage === null) {
+    let p = document.createElement("p");
+    p.textContent = "No History";
+    historyBox.append(p);
+  } else {
+    historyBox.textContent = "";
+
+    for (let i = 0; i < storage.length; i++) {
+      var searchHistory = document.createElement("button");
+      searchHistory.setAttribute("class", "btn btn-secondary");
+      searchHistory.textContent = storage[i];
+      historyBox.append(searchHistory);
+
+      searchHistory.addEventListener("click", function (e) {
+        let userInput = e.target.textContent;
+        var queryURL =
+          "http://api.openweathermap.org/data/2.5/weather?q=" +
+          userInput +
+          "&units=imperial&appid=" +
+          APIKey;
+        if (!userInput) {
+          alert("Please enter a city!");
+          return;
+        } else {
+          fetch(queryURL)
+            .then(function (response) {
+              return response.json();
+            })
+            .then(function (data) {
+              if (data.cod == 404) {
+                alert("City not found!");
+                return;
+              }
+              displayDaily(data, userInput);
+            });
+        }
+      });
+    }
+  }
+}
+
+displaySearchHistory();
 
 searchButton.addEventListener("click", searchSubmission);
 // userInput.addEventListener("submit", searchSubmission);
